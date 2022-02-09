@@ -18,10 +18,13 @@ namespace SeleniumPjt
         static void Main(string[] args)
         {
             Console.WriteLine("SeleniumTest Start");
+            
+            //Open Test Data Excel
             Excel.Application configExcelAppMaster = new Excel.Application();
             Excel.Workbook configTestCaseMaster = configExcelAppMaster.Workbooks.Open(System.IO.Path.GetFullPath(TestDataExcel));
             Excel.Worksheet configDataSheet = (Excel.Worksheet)configExcelAppMaster.Sheets["TestConfiguration"];
             
+            //Load Chrome Driver and GoToURL
             sUtil.LoadChromeDriver();
             sUtil.GoToTargetURL(po.GetURL());
 
@@ -71,6 +74,7 @@ namespace SeleniumPjt
                 configTestCaseMaster.Close(0);
                 configExcelAppMaster.Quit();
                 Console.WriteLine("-----Test End-----");
+                
 
 
         }
