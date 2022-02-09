@@ -33,11 +33,6 @@ namespace SeleniumPjt
         public void SwitchTo()
         {
             driver.SwitchTo().Window(driver.WindowHandles.Last());
-            driver.SwitchTo().Window(driver.WindowHandles.Last());
-
-            //driver.SwitchTo().Frame(driver.FindElement(By.Id("ID_OF_FRAME")));
-            //string text = driver.SwitchTo().Alert().Text;
-            //Assert.True(text.Contains("The username and/or password entered are invalid."));
         }
 
         public IWebDriver LoadChromeDriver()
