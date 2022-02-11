@@ -7,6 +7,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace SeleniumPjt.RunTest
 {
+    //Parents Class
     internal class RunTest
     {
         protected PageObjectRepository po;

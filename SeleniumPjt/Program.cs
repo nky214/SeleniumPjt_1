@@ -27,7 +27,8 @@ namespace SeleniumPjt
             //Load Chrome Driver and GoToURL
             sUtil.LoadChromeDriver();
             sUtil.GoToTargetURL(po.GetURL());
-
+                
+                //Run Test Till List End
                 int exeCount = 2;
                 while (true)
                 {
@@ -59,16 +60,18 @@ namespace SeleniumPjt
                         Console.WriteLine("-----Exception-----");
                         Console.WriteLine(ex);
                     }
+                    //Check there is more test items
                     if ((string)configDataSheet.Cells[exeCount + 1, 1].Value == null)
                     {
                         break;
                     }
                     exeCount++;
                 }
-                
+                //Quit Chrome Driver
                 Console.WriteLine("-----Quit Chrome Driver-----");
                 sUtil.QuitChromeDriver();
                 Console.WriteLine("-----Save Result Excel-----");
+                //Save Test Result File
                 string cResultDirectory = cDirectory + @"\TestResult\";
                 configTestCaseMaster.SaveAs(cResultDirectory+"TestResult_"+DateTime.Now.ToString().Replace(":","_").Replace("/","_")+".xlsx");
                 configTestCaseMaster.Close(0);

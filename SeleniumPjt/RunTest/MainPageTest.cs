@@ -18,6 +18,7 @@ namespace SeleniumPjt.RunTest
 
         public void ExecuteTest()
         {
+            //Run TestCases Till End
             int exeCount = 2;
             while (true)
             {
@@ -43,6 +44,14 @@ namespace SeleniumPjt.RunTest
                     string testData = (string)TestSheet.Cells[exeCount, 2].Value;
                     string eBehavior = (string)TestSheet.Cells[exeCount, 3].Value;
                     string cBehavior = CheckPromotionalCodeButton(testData);
+                    TestSheet.Cells[exeCount, 4].Value = cBehavior;
+                    WriteResult(exeCount, cBehavior.Equals(eBehavior), TestSheet);
+                }
+                else if (testCase.Equals("CheckWelcomeMessage"))
+                {
+                    string testData = (string)TestSheet.Cells[exeCount, 2].Value;
+                    string eBehavior = (string)TestSheet.Cells[exeCount, 3].Value;
+                    string cBehavior = CheckWelcomeMessage();
                     TestSheet.Cells[exeCount, 4].Value = cBehavior;
                     WriteResult(exeCount, cBehavior.Equals(eBehavior), TestSheet);
                 }
@@ -75,6 +84,11 @@ namespace SeleniumPjt.RunTest
             sUtil.FindElement(po.GetPromoCodeInputBox()).SendKeys(testData);
             sUtil.FindElement(po.GetPromoSubmitButton()).Click();
             return sUtil.FindElement(po.GetEmailReturnMessageBox()).Text;
+        }
+
+        public string CheckWelcomeMessage()
+        {
+            return sUtil.FindElement(po.GetWelcomeMessage()).Text;
         }
 
 

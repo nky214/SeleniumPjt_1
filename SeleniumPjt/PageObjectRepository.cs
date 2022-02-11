@@ -15,6 +15,8 @@ namespace SeleniumPjt
         private By emailSubmitButton = By.Id("remind_email_submit");
         private By promoCodeInputBox = By.Id("promo_code_input");
         private By promoSubmitButton = By.Id("promo_code_submit");
+        private By welcomeMessage = By.XPath("/html/body/div[2]/div/h2");
+        private By selectBrand = By.Id("brand");
 
 
         private By marchButton = By.XPath("//*[@id='header_nav']/nav/ul/li[3]/a");
@@ -68,6 +70,15 @@ namespace SeleniumPjt
             return promoSubmitButton;
         }
 
+        public By GetWelcomeMessage()
+        {
+            return welcomeMessage;
+        }
+
+        public By GetSelectBrand()
+        {
+            return selectBrand;
+        }
 
         public By GetMarchButton()
         {

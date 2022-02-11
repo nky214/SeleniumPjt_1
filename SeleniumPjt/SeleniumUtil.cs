@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +20,13 @@ namespace SeleniumPjt
         private DefaultWait<IWebDriver> fluentWait;
         public static SeleniumUtil GetInstance()
         {
-            //LoadChromeDriver();
             if (instance == null)
             {
                 instance = new SeleniumUtil();
                 
             }
             return instance;
-
-            
+    
         }
 
         public void SwitchTo()
@@ -47,7 +46,7 @@ namespace SeleniumPjt
 
         public void QuitChromeDriver()
         {
-
+            
             driver.Close();
             driver.Quit();
         }
@@ -74,21 +73,29 @@ namespace SeleniumPjt
 
         public IWebElement FindElement(By locator)
         {
-            //fluentWait.Until(x => x.FindElement(locator));
             IWebElement element = driver.FindElement(locator);
-
             return element;
         }
 
         public IReadOnlyCollection<IWebElement> FindElements(By locator)
         {
-
             IReadOnlyCollection<IWebElement> elements = driver.FindElements(locator);
-
             return elements;
         }
 
-        private void FluentWait()
+        public void WaitElementTillVisible(By locator)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(locator));
+        }
+
+        public void WaitElementToBeClickable(By locator)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(locator));
+        }
+
+        public void FluentWait()
         {
             fluentWait = new DefaultWait<IWebDriver>(driver);
             fluentWait.Timeout = TimeSpan.FromSeconds(5);
@@ -96,7 +103,6 @@ namespace SeleniumPjt
             fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException), 
                                             typeof(ElementNotInteractableException));
         }
-
 
         public object JSExecute(string script, IWebElement element)
         {
