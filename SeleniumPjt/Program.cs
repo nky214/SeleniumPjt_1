@@ -12,6 +12,7 @@ namespace SeleniumPjt
     {
         static string cDirectory = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString();
         static string TestDataExcel = cDirectory + @"\TestData\TestDataExcel.xlsx";
+        //Get Instances
         static PageObjectRepository po = PageObjectRepository.GetInstance();
         static SeleniumUtil sUtil = SeleniumUtil.GetInstance();
        
